@@ -1,38 +1,48 @@
+<style>
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+}
+</style>
+
 <?php
 $this->renderPartial('_menuEss', ['model' => $model, 'month' => $month, 'year' => $year]);
 ?>
 
-<div class="page-header">
-    <h1>
-        <i class="fa fa-user fa-fw"></i>
-        <?php echo $model->employee_name; ?>
-    </h1>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-        <?php
-        echo $model->photoPath;
-        ?>
-
-        <div style="font-size:11px">Data Completeness <span
-                class="pull-right strong"><?php echo peterFunc::indoFormat($model->completion, 0) ?>%</span>
-            <?php
-            $this->widget('booster.widgets.TbProgress', [
-                'context' => 'success', // 'info', 'success' or 'danger'
-                'percent' => $model->completion,
-                'htmlOptions' => [
-                    'style' => 'height:7px',
-                ]
-            ]);
-            ?>
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+        <?php echo $model->photoPath; ?><br/>
+        <div class="fb-profile-text">
+            <h1><?php echo $model->employee_name; ?></h1>
+            <?php echo $this->renderPartial('/gPerson/_personalInfo', ['model' => $model]); ?>
         </div>
+    </div>
 
-    </div>
-    <div class="col-md-9">
-        <?php echo $this->renderPartial('/gPerson/_personalInfo', ['model' => $model]); ?>
-    </div>
-</div>
+<br/>
 
 <div class="row">
     <div class="col-md-12">

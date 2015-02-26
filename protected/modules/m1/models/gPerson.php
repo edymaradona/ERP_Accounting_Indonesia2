@@ -735,16 +735,17 @@ class gPerson extends BaseModel
 
     public function getPhotoPath()
     {
+        $options = ["width" => "100%", 'id' => 'photo', 'align'=>"left", 'class' => "fb-image-profile thumbnail"];
         if ($this->c_pathfoto != null && $this->PhotoExist) {
             if ($this->PhotoExistThumb) {
-                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/hr/employee/thumb/" . $this->c_pathfoto, CHtml::encode($this->employee_name), ["width" => "100%", 'id' => 'photo']);
+                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/hr/employee/thumb/" . $this->c_pathfoto, CHtml::encode($this->employee_name), $options);
             } else
-                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/hr/employee/" . $this->c_pathfoto, CHtml::encode($this->employee_name), ["width" => "100%", 'id' => 'photo']);
+                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/hr/employee/" . $this->c_pathfoto, CHtml::encode($this->employee_name), $options);
         } else {
             if ($this->sex_id == 1) {
-                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/nophoto.jpg", CHtml::encode($this->employee_name), ["width" => "100%", 'id' => 'photo']);
+                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/nophoto.jpg", CHtml::encode($this->employee_name), $options);
             } else
-                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/nophotoW.jpg", CHtml::encode($this->employee_name), ["width" => "100%", 'id' => 'photo']);
+                $path = CHtml::image(Yii::app()->request->baseUrlCdn . "/shareimages/nophotoW.jpg", CHtml::encode($this->employee_name), $options);
         }
         return $path;
     }
